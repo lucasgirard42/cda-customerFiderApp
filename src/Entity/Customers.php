@@ -12,8 +12,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *      collectionOperations={"GET","POST"},
- *      itemOperations={"GET","PUT","DELETE"},
+ *      collectionOperations={"GET",
+ *                            "POST"={"security"="is_granted('ROLE_USER')"}
+ *                           },
+ *      itemOperations={"GET",
+ *                      "PUT"={"security"="is_granted('edit', object)"},
+ *                      "DELETE"={"security"="is_granted('delete', object)"}
+ *          },
  *      normalizationContext={"groups"={"customers:read"}},
  *      denormalizationContext={"groups"={"customers:write"}}
  * )
@@ -25,7 +30,7 @@ class Customers
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("customers:read")
+     * @Groups({"customers:read", "user:read"})
      */
     private $id;
 
@@ -107,6 +112,12 @@ class Customers
      * @Groups({"customers:read", "customers:write"})
      */
     private $fidelityPoints;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="customers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -291,6 +302,18 @@ class Customers
                 $fidelityPoint->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
@@ -72,6 +74,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $plainPassword;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Customers::class, mappedBy="user")
+     * @Groups("user:read")
+     */
+    private $customers;
+
+    public function __construct()
+    {
+        $this->customers = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +137,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function hasRoles(string $roles): bool
+    {
+        return in_array($roles, $this->roles);
     }
 
     /**
@@ -205,6 +223,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Customers[]
+     */
+    public function getCustomers(): Collection
+    {
+        return $this->customers;
+    }
+
+    public function addCustomer(Customers $customer): self
+    {
+        if (!$this->customers->contains($customer)) {
+            $this->customers[] = $customer;
+            $customer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomer(Customers $customer): self
+    {
+        if ($this->customers->removeElement($customer)) {
+            // set the owning side to null (unless already changed)
+            if ($customer->getUser() === $this) {
+                $customer->setUser(null);
+            }
+        }
 
         return $this;
     }

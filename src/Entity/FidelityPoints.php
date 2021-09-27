@@ -109,5 +109,5 @@ class FidelityPoints
 
         return $this;
     }
-    
+
 }
