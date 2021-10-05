@@ -73,7 +73,7 @@ class CustomersDataPersister implements ContextAwareDataPersisterInterface
         // }
 
         
-        // Set the author if it's a new article
+        // Set the user if it's a new user
         if ($this->_request->getMethod() === 'POST') {
             $data->setUser($this->_security->getUser());
         }

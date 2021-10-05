@@ -1,4 +1,6 @@
 <?php
+// "PUT"={"security"="is_granted('edit', object)"},                 
+// "DELETE"={"security"="is_granted('delete', object)"}
 
 namespace App\Entity;
 
@@ -16,8 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                            "POST"={"security"="is_granted('ROLE_USER')"}
  *                           },
  *      itemOperations={"GET",
- *                      "PUT"={"security"="is_granted('edit', object)"},
- *                      "DELETE"={"security"="is_granted('delete', object)"}
+ *                      "PUT",
+ *                      "DELETE"
  *          },
  *      normalizationContext={"groups"={"customers:read"}},
  *      denormalizationContext={"groups"={"customers:write"}}
@@ -30,19 +32,19 @@ class Customers
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"customers:read", "user:read"})
+     * @Groups({"customers:read", "user:read", "fidelityPoints:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write"})
+     * @Groups({"customers:read", "customers:write", "user:read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write"})
+     * @Groups({"customers:read", "customers:write", "user:read"})
      */
     private $lastName;
 
@@ -54,7 +56,7 @@ class Customers
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write"})
+     * @Groups({"customers:read", "customers:write", "user:read",  "fidelityPoints:read"})
      */
     private $email;
 
@@ -109,7 +111,7 @@ class Customers
     /**
      * @ORM\OneToMany(targetEntity=FidelityPoints::class, mappedBy="customer")
      * @ApiSubresource
-     * @Groups({"customers:read", "customers:write"})
+     * @Groups({"customers:read", "customers:write", "user:read"})
      */
     private $fidelityPoints;
 

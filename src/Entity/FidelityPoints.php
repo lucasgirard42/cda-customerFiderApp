@@ -28,7 +28,7 @@ class FidelityPoints
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write"})
+     * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write", "user:read"})
      */
     private $pointFidelityCustomer;
 
@@ -47,7 +47,7 @@ class FidelityPoints
     /**
      * @ORM\ManyToOne(targetEntity=Customers::class, inversedBy="fidelityPoints")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("fidelityPoints:write")
+     * @Groups({"fidelityPoints:write", "fidelityPoints:read" })
      */
     private $customer;
 
