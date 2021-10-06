@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import CustomersAPI from "../services/customersAPI";
+import moment from "moment";
 
 const CustomersPage = (props) => {
   const [customers, setCustomers] = useState([]);
@@ -68,6 +69,8 @@ const CustomersPage = (props) => {
     currentPage,
     itemsPerPage
   );
+
+  const formatDate = (str) => moment(str).format('DD/MM/YYYY');
 // console.log(customers);
   return (
     <>
@@ -111,7 +114,7 @@ const CustomersPage = (props) => {
                   </td>
                 ))}
                 {customer.fidelityPoints.map((createdpoints) => (
-                  <td key={createdpoints.id}>{createdpoints.createdAt}</td>
+                  <td key={createdpoints.id}>{formatDate(createdpoints.createdAt)}</td>
                 ))}
                 <td>
                   <button
