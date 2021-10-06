@@ -1,7 +1,7 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
-import moment from "moment";
-import fidelityPointsAPi  from "../services/fidelityPointsAPi";
+import fidelityPointsAPi from "../services/fidelityPointsAPi";
 
 const FidelityPointsPage = () => {
   const [fidelityPoints, setFidelityPoints] = useState([]);
