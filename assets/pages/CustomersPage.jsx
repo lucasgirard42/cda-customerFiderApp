@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import CustomersAPI from "../services/customersAPI";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const CustomersPage = (props) => {
   const [customers, setCustomers] = useState([]);
@@ -75,7 +76,12 @@ const CustomersPage = (props) => {
   return (
     <>
       <div className="container">
-        <h1>liste des clients</h1>
+        <div className="mb-2 d-flex justify-content-between align-items-center">
+          <h1>liste des clients</h1>
+          <Link to="/customers/new" className="btn btn-primary">
+            Crée un client
+          </Link>
+        </div>
         <div className="form-group">
           <input
             type="text"
@@ -110,11 +116,13 @@ const CustomersPage = (props) => {
                 <td>{customer.service}</td>
                 {customer.fidelityPoints.map((points) => (
                   <td key={points.id} className="text-center">
-                   + {points.pointFidelityCustomer} point
+                    + {points.pointFidelityCustomer} point
                   </td>
                 ))}
                 {customer.fidelityPoints.map((createdpoints) => (
-                  <td key={createdpoints.id}>{formatDate(createdpoints.createdAt)}</td>
+                  <td key={createdpoints.id}>
+                    {formatDate(createdpoints.createdAt)}
+                  </td>
                 ))}
                 <td>
                   <button

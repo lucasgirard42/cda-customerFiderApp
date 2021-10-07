@@ -7,15 +7,14 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import {
-    HashRouter, Route, Switch, withRouter
-} from "react-router-dom";
+import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 // start the Stimulus application
 // import './bootstrap';
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthContext from "./contexts/AuthContext";
 import CustomersPage from "./pages/CustomersPage";
+import CustomerPage from "./pages/CustomerPage";
 import FidelityPointsPage from "./pages/FidelityPointsPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -25,8 +24,6 @@ import "./styles/app.css";
 
 AuthAPI.setup();
 
-
-
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     AuthAPI.isAuthenticated()
@@ -35,24 +32,26 @@ const App = () => {
   const NavbarWithRouter = withRouter(Navbar);
 
   return (
-    <AuthContext.Provider value={{
+    <AuthContext.Provider
+      value={{
         isAuthenticated,
-        setIsAuthenticated
-        }}>
+        setIsAuthenticated,
+      }}
+    >
       <HashRouter>
         <NavbarWithRouter />
         <main className="conatiner pt-5">
           <Switch>
             <Route path="/login" component={LoginPage} />
-            <PrivateRoute
-              path="/fidelityPoints"
-              component={FidelityPointsPage}
-            />
+            <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>
+            <PrivateRoute path="/customers/:id" component={CustomerPage} />
             <PrivateRoute path="/customers" component={CustomersPage} />
+
             <Route path="/" component={HomePage} />
           </Switch>
         </main>
       </HashRouter>
+      
     </AuthContext.Provider>
   );
 };
