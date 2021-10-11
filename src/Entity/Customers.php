@@ -32,19 +32,19 @@ class Customers
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"customers:read", "user:read", "fidelityPoints:read"})
+     * @Groups({"customers:read", "users:read", "fidelityPoints:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write", "user:read"})
+     * @Groups({"customers:read", "customers:write", "users:read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write", "user:read"})
+     * @Groups({"customers:read", "customers:write", "users:read"})
      */
     private $lastName;
 
@@ -56,7 +56,7 @@ class Customers
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"customers:read", "customers:write", "user:read",  "fidelityPoints:read"})
+     * @Groups({"customers:read", "customers:write", "users:read",  "fidelityPoints:read"})
      */
     private $email;
 
@@ -110,13 +110,13 @@ class Customers
 
     /**
      * @ORM\OneToMany(targetEntity=FidelityPoints::class, mappedBy="customer")
-     * @Groups({"customers:read", "customers:write", "user:read"})
+     * @Groups({"customers:read", "customers:write", "users:read"})
      */
     private $fidelityPoints;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="customers")
-     * 
+     * @Groups("customers:read")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

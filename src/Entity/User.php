@@ -3,21 +3,24 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\SerializedName;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 
 /**
  * @ApiResource(
- *      normalizationContext={"groups"={"user:read"}},
- *      denormalizationContext={"groups"={"user:write"}}
+ *      collectionOperations={"GET","POST"},
+ *      itemOperations={"GET","PUT","DELETE"},
+ *      normalizationContext={"groups"={"users:read"}},
+ *      denormalizationContext={"groups"={"users:write"}}
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -27,19 +30,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("user:read")
+     * @Groups("users:read", "customers:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user:read", "user:write", "customer:read"})
+     * @Groups({"users:read", "users:write", "customers:read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups("user:read")
+     * @Groups("users:read")
      */
     private $roles = [];
 
@@ -51,34 +54,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"users:read", "users:write"})
      */
     private $company;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"users:read", "users:write"})
      * 
      */
     private $mail;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"users:read", "users:write"})
      * 
      */
     private $reduction;
 
     /**
-     * @Groups("user:write")
+     * @Groups("users:write")
      * @SerializedName("password")
      */
     private $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity=Customers::class, mappedBy="user")
-     * @ApiSubresource
-     * @Groups("user:read")
+     * Groups({"users:read"})
      */
     private $customers;
 
