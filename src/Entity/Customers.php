@@ -61,7 +61,7 @@ class Customers
     private $email;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Groups({"customers:read", "customers:write"})
      */
     private $phone;
@@ -91,7 +91,7 @@ class Customers
     private $service;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Groups({"customers:read", "customers:write"})
      */
     private $zipcode;
@@ -110,13 +110,13 @@ class Customers
 
     /**
      * @ORM\OneToMany(targetEntity=FidelityPoints::class, mappedBy="customer")
-     * @ApiSubresource
      * @Groups({"customers:read", "customers:write", "user:read"})
      */
     private $fidelityPoints;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="customers")
+     * 
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

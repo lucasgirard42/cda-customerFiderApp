@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 // Déconnexion suprimé le token de localstorge et sur axios
 function logout() {
   window.localStorage.removeItem("authToken");
-  delete axios.defaults.headers["authorization"];
+  delete axios.defaults.headers["Authorization"];
 }
 
 /**
@@ -32,7 +32,7 @@ function authenticate(credentials) {
  * @param {string} token le token JWT 
  */
 function setAxiosToken(token) {
-  axios.defaults.headers["authorization"] = "Bearer " + token;
+  axios.defaults.headers["Authorization"] = "Bearer " + token;
 }
 
 /**

@@ -1,50 +1,54 @@
 import React, { useState } from "react";
 import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const CustomerPage = (props) => {
   const [customer, setCustomer] = useState({
     lastName: "",
     firstName: "",
     email: "",
-     phone: "",
-    // adress: "",
-    // zipcode: "",
-    // city: "",
-    // society: "",
+    phone: "",
+    address: "",
+    zipcode: "",
+    city: "",
+    society: "",
     // image: "",
-    // service: ""
+    service: "",
   });
 
+  console.log(props);
   const [errors, setErrors] = useState({
     lastName: "",
     firstName: "",
     email: "",
     phone: "",
-    // adress: "",
-    // zipcode: "",
-    // city: "",
-    // society: "",
+    address: "",
+    zipcode: "",
+    city: "",
+    society: "",
     // image: "",
-    // service: ""  
+    service: "",
   });
-
 
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setCustomer({ ...customer, [name]: value });
   };
 
-  const handleSubmit = async event => {
-      event.preventDefault();
-      try {
-           const response =  await axios.post("https://127.0.0.1:8000/api/customers", customer)
-           console.log(response.data);
-      } catch (error) {
-          console.log(error.response);
-      }
-  } 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://127.0.0.1:8000/api/customers",
+        customer
+      );
+      // console.log(response.data);
+    } catch (error) {
+      // console.log(error.response);
+
+    }
+  };
 
   return (
     <>
@@ -67,7 +71,6 @@ const CustomerPage = (props) => {
             label="Prénom"
             placeholder="Prénom du client"
             error={errors.firstName}
-
           />
           <Field
             onChange={handleChange}
@@ -84,61 +87,57 @@ const CustomerPage = (props) => {
             name="phone"
             label="Numéro de téléphone"
             placeholder="Numéro de téléphone du client"
-            type="text"
+            type="number"
             error={errors.phone}
           />
           <Field
-            
-            value={customer.adress}
-            name="adress"
+            onChange={handleChange}
+            value={customer.address}
+            name="address"
             label="Adresse"
             placeholder="Adresse du client"
-            error={errors.adress}
+            error={errors.address}
           />
           <Field
-            
+            onChange={handleChange}
             value={customer.zipcode}
             name="zipcode"
             label="Adresse postal"
             placeholder="Adresse postale du client"
+            type="number"
             error={errors.zipcode}
-
           />
           <Field
-            
+            onChange={handleChange}
             value={customer.city}
             name="city"
             label="Ville"
             placeholder="Ville du client"
             error={errors.city}
-
           />
           <Field
-            
+            onChange={handleChange}
             value={customer.society}
             name="society"
             label="Société "
             placeholder="Société du client"
             error={errors.society}
-
           />
-          <Field
-            
+          {/* <Field
+            onChange={handleChange}
             value={customer.image}
             name="image"
             label="Image profile "
             placeholder="image profile du client"
             error={errors.image}
-
-          />
+          /> */}
           <Field
-            
+            onChange={handleChange}
             value={customer.service}
             name="service"
             label="Service"
             placeholder="Type de service du client"
             error={errors.service}
-
           />
           <div className="form-group">
             <button type="submit" className="btn btn-success">
