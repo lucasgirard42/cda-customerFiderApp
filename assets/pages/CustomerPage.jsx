@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CustomerPage = (props) => {
+
+  const {id ="new"} = props.match.params;
+
+ 
+
   const [customer, setCustomer] = useState({
     lastName: "",
     firstName: "",
@@ -17,7 +22,7 @@ const CustomerPage = (props) => {
     service: "",
   });
 
-  console.log(props);
+  // console.log(props);
   const [errors, setErrors] = useState({
     lastName: "",
     firstName: "",
@@ -31,6 +36,28 @@ const CustomerPage = (props) => {
     service: "",
   });
 
+  const [editing, setEditing] = useState(false);
+
+  const fetchCustomer = async (id) => {
+    try {
+      const data = await axios
+        .get("https://127.0.0.1:8000/api/customers/" + id)
+        .then((response) => response.data);
+      const {firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints} = data;
+      setCustomer({firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints})
+      // console.log(data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(()=> {
+    if (id !== "new") {
+      setEditing(true);
+      fetchCustomer(id);
+    }; 
+  }, [id]);
+
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setCustomer({ ...customer, [name]: value });
@@ -39,21 +66,37 @@ const CustomerPage = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "https://127.0.0.1:8000/api/customers",
-        customer
-      );
+      if (editing) {
+        const response = await axios.put(
+          "https://127.0.0.1:8000/api/customers/" + id,
+          customer
+        );
+        // console.log(response.data);
+      } else {
+        const response = await axios.post(
+          "https://127.0.0.1:8000/api/customers",
+          customer
+        );
+      }
+
+      setErrors({});
       // console.log(response.data);
     } catch (error) {
-      // console.log(error.response);
-
+      if (error.response.data.violations) {
+        const apiErrors = {};
+        error.response.data.violations.map((violation) => {
+          apiErrors[violation.propertyPath] = violation.message;
+        });
+        setErrors(apiErrors);
+        // console.log(apiErrors);
+      }
     }
   };
 
   return (
     <>
       <div className="container">
-        <h1>création d'un client</h1>
+        {! editing && <h1>création d'un client</h1> || <h1>Modification du client </h1>}
 
         <form onSubmit={handleSubmit}>
           <Field

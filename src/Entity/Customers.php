@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * @ApiResource(
  *      collectionOperations={"GET",
@@ -39,12 +42,16 @@ class Customers
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"customers:read", "customers:write", "users:read"})
+     * @Assert\NotBlank(message="Le prénom du customer est obligatoire")
+     * @Assert\Length(min=3, minMessage="Le prénom doit faire entre 3 et 255 caractères", max=255, maxMessage="Le prénom doit faire entre 3 et 255 caractères")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"customers:read", "customers:write", "users:read"})
+     * @Assert\NotBlank(message="Le nom de famille du customer est obligatoire")
+     * @Assert\Length(min=3, minMessage="Le nom de famille doit faire entre 3 et 255 caractères", max=255, maxMessage="Le nom de famille doit faire entre 3 et 255 caractères")
      */
     private $lastName;
 
@@ -57,6 +64,8 @@ class Customers
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"customers:read", "customers:write", "users:read",  "fidelityPoints:read"})
+     * @Assert\NotBlank(message="L'adresse email du customer est obligatoire")
+     * @Assert\Email(message="Le format de l'adresse email doit être valide")
      */
     private $email;
 
