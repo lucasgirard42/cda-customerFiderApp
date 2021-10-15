@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\FidelityPointsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -27,8 +28,10 @@ class FidelityPoints
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write", "user:read"})
+     * @Assert\NotBlank(message="Le point de la fidélité est obligatoire !")
+     * 
      */
     private $pointFidelityCustomer;
 
@@ -62,12 +65,12 @@ class FidelityPoints
         return $this->id;
     }
 
-    public function getPointFidelityCustomer(): ?int
+    public function getPointFidelityCustomer(): ?string
     {
         return $this->pointFidelityCustomer;
     }
 
-    public function setPointFidelityCustomer(?int $pointFidelityCustomer): self
+    public function setPointFidelityCustomer(?string $pointFidelityCustomer): self
     {
         $this->pointFidelityCustomer = $pointFidelityCustomer;
 

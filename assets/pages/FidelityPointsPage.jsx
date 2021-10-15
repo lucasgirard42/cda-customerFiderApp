@@ -2,6 +2,8 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import fidelityPointsAPi from "../services/fidelityPointsAPi";
+import { Link } from "react-router-dom";
+
 
 const FidelityPointsPage = () => {
   const [fidelityPoints, setFidelityPoints] = useState([]);
@@ -71,7 +73,12 @@ const FidelityPointsPage = () => {
   return (
     <>
       <div className="container">
-        <h1>Liste des points de fidelité des clients </h1>
+        <div className="d-flex justify-content-between align-items-center">
+          <h1>Liste des points de fidelité des clients </h1>
+          <Link className="btn btn-primary" to="/fidelityPoints/new">
+            crée point de fidelité
+          </Link>
+        </div>
         <div className="form-group">
           <input
             type="text"
@@ -103,9 +110,9 @@ const FidelityPointsPage = () => {
                 <td>{formatDate(fidelityPoint.createdAt)}</td>
                 <td>{formatDate(fidelityPoint.updatedAt)}</td>
                 <td>
-                  <button className="btn btn-sm btn-primary me-2">
+                  <Link to={"/fidelityPoints/"+fidelityPoint.id} className="btn btn-sm btn-primary me-2">
                     Editer
-                  </button>
+                  </Link>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDelete(fidelityPoint.id) }>Supprimer</button>
                 </td>
               </tr>

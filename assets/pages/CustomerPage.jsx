@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import CustomersAPI from "../services/customersAPI";
 
 const CustomerPage = (props) => {
 
@@ -38,19 +38,20 @@ const CustomerPage = (props) => {
 
   const [editing, setEditing] = useState(false);
 
+
+  // Récuprération du customer selon l'id 
   const fetchCustomer = async (id) => {
     try {
-      const data = await axios
-        .get("https://127.0.0.1:8000/api/customers/" + id)
-        .then((response) => response.data);
-      const {firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints} = data;
+      const {firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints} = await CustomersAPI.find(id);  // destructuration de data 
       setCustomer({firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints})
       // console.log(data);
     } catch (error) {
       console.log(error.response);
+      history.replace('/customers');
     }
-  };
+  }; 
 
+  // chargement du customer si besoin au chargement du composant ou au changement de l'id 
   useEffect(()=> {
     if (id !== "new") {
       setEditing(true);
@@ -58,25 +59,25 @@ const CustomerPage = (props) => {
     }; 
   }, [id]);
 
+  // Gestion des changement des imputs dans le formulaire
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setCustomer({ ...customer, [name]: value });
   };
 
+  //Gestion de la soumission du formulaire 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       if (editing) {
-        const response = await axios.put(
-          "https://127.0.0.1:8000/api/customers/" + id,
-          customer
-        );
-        // console.log(response.data);
+        await CustomersAPI.update(id, customer);
+        props.history.replace("/customers"); 
+        // TODO notification de success
       } else {
-        const response = await axios.post(
-          "https://127.0.0.1:8000/api/customers",
-          customer
-        );
+        await CustomersAPI.create(customer);
+
+        // TODO notification de success
+        props.history.replace("/customers"); // <------- revenir a la liste des clients
       }
 
       setErrors({});
@@ -89,6 +90,8 @@ const CustomerPage = (props) => {
         });
         setErrors(apiErrors);
         // console.log(apiErrors);
+
+        // TODO notification des erreurs
       }
     }
   };

@@ -126,6 +126,9 @@ const CustomersPage = (props) => {
                   </td>
                 ))}
                 <td>
+                <Link to={"/customers/"+customer.id} className="btn btn-sm btn-primary me-2">
+                    Editer
+                  </Link>
                   <button
                     className="btn btn-sm btn-danger"
                     onClick={() => handleDelete(customer.id)}

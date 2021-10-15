@@ -16,6 +16,7 @@ import AuthContext from "./contexts/AuthContext";
 import CustomersPage from "./pages/CustomersPage";
 import CustomerPage from "./pages/CustomerPage";
 import FidelityPointsPage from "./pages/FidelityPointsPage";
+import FidelityPointPage from "./pages/FidelityPointPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import AuthAPI from "./services/authAPI";
@@ -45,6 +46,7 @@ const App = () => {
           <Switch>
             <Route path="/login" component={LoginPage} />
             <PrivateRoute path="/users" component={UsersPage} />
+            <PrivateRoute path="/fidelityPoints/:id" component={FidelityPointPage} />
             <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>
             <PrivateRoute path="/customers/:id" component={CustomerPage} />
             <PrivateRoute path="/customers" component={CustomersPage} />
