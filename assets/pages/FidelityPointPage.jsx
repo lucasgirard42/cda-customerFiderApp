@@ -99,7 +99,7 @@ const FidelityPoint = ({ history, match }) => {
 
   return (
     <>
-      <div className="container">
+      
         {(editing && <h1>Modification point de fidelité</h1>) || (
           <h1>Création des point de fidelité</h1>
         )}
@@ -139,7 +139,7 @@ const FidelityPoint = ({ history, match }) => {
             </Link>
           </div>
         </form>
-      </div>
+
     </>
   );
 };

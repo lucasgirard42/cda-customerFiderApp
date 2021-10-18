@@ -76,7 +76,7 @@ const CustomersPage = (props) => {
 // console.log(customers);
   return (
     <>
-      <div className="container">
+      
         <div className="mb-2 d-flex justify-content-between align-items-center">
           <h1>liste des clients</h1>
           <Link to="/customers/new" className="btn btn-primary">
@@ -148,7 +148,7 @@ const CustomersPage = (props) => {
             onPageChange={handleChangePage}
           />
         )}
-      </div>
+      
     </>
   );
 };

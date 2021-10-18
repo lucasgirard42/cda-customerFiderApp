@@ -23,6 +23,7 @@ import AuthAPI from "./services/authAPI";
 import UsersPage from "./pages/UsersPage";
 // any CSS you import will output into a single css file (app.css in this case)
 import "./styles/app.css";
+import RegisterPage from "./pages/RegisterPage";
 
 AuthAPI.setup();
 
@@ -42,9 +43,10 @@ const App = () => {
     >
       <HashRouter>
         <NavbarWithRouter />
-        <main className="conatiner pt-5">
+        <main className="container pt-5">
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
             <PrivateRoute path="/users" component={UsersPage} />
             <PrivateRoute path="/fidelityPoints/:id" component={FidelityPointPage} />
             <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>

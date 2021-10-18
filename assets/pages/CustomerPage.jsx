@@ -100,7 +100,7 @@ const CustomerPage = (props) => {
 
   return (
     <>
-      <div className="container">
+      
         {! editing && <h1>création d'un client</h1> || <h1>Modification du client </h1>}
 
         <form onSubmit={handleSubmit}>
@@ -196,7 +196,7 @@ const CustomerPage = (props) => {
             </Link>
           </div>
         </form>
-      </div>
+      
     </>
   );
 };

@@ -72,9 +72,10 @@ const FidelityPointsPage = () => {
 //   console.log(fidelityPoints);
   return (
     <>
-      <div className="container">
+      
         <div className="d-flex justify-content-between align-items-center">
           <h1>Liste des points de fidelité des clients </h1>
+          <Link className="btn btn-secondary" to="/customers">retour a la liste des clients </Link>
           <Link className="btn btn-primary" to="/fidelityPoints/new">
             crée point de fidelité
           </Link>
@@ -120,7 +121,6 @@ const FidelityPointsPage = () => {
           </tbody>
         </table>
         <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} onPageChange={handleChangePage} length={filteredFidelityPoints.length} />
-      </div>
     </>
   );
 };

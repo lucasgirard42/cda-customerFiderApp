@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = (props) => {
     return ( 
-<div className="container bg-light p-5">
+<div className=" bg-light p-5">
 	  <h1 className="display-4">Jumbotron</h1>
 	  <p className="lead">This is  a jumbotron created using the bootstrap 5</p>
 	  <hr className="my-4" />
