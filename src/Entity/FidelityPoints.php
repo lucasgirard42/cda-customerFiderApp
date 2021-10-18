@@ -10,6 +10,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
+ *      subresourceOperations={
+ *        "api_customers_fidelityPoints_get_subresource"={
+ *             "normalization_context"={"groups"={"fidelityPoints_subresource"}}
+ *         }
+ *     },
  *      collectionOperations={"GET","POST"},
  *      itemOperations={"GET","PUT","DELETE"},
  *      normalizationContext={"groups"={"fidelityPoints:read"}},
@@ -23,13 +28,13 @@ class FidelityPoints
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"fidelityPoints:read", "customers:read"})
+     * @Groups({"fidelityPoints:read", "customers:read", "fidelityPoints_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write", "user:read"})
+     * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write", "user:read", "fidelityPoints_subresource"})
      * @Assert\NotBlank(message="Le point de la fidélité est obligatoire !")
      * 
      */
@@ -37,13 +42,13 @@ class FidelityPoints
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"fidelityPoints:read", "customers:read"})
+     * @Groups({"fidelityPoints:read", "customers:read", "fidelityPoints_subresource"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"fidelityPoints:read", "customers:read"})
+     * @Groups({"fidelityPoints:read", "customers:read", "fidelityPoints_subresource"})
      */
     private $updatedAt;
 

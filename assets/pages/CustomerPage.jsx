@@ -51,6 +51,8 @@ const CustomerPage = (props) => {
     }
   }; 
 
+
+
   // chargement du customer si besoin au chargement du composant ou au changement de l'id 
   useEffect(()=> {
     if (id !== "new") {

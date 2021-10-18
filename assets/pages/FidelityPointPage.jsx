@@ -76,7 +76,7 @@ const FidelityPoint = ({ history, match }) => {
     try {
       if (editing) {
         await FidelityPointsAPi.update(id, fidelityPoint);
-
+        history.replace("/fidelityPoints");
         // Todo notificacion
       } else {
         await FidelityPointsAPi.create(fidelityPoint);

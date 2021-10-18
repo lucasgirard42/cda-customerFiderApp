@@ -9,7 +9,7 @@ function findAll(){
 
 function create(customer){
     return axios
-    .get("https://127.0.0.1:8000/api/customers",customer)
+    .post("https://127.0.0.1:8000/api/customers",customer)
 }
 
 function find(id){
@@ -24,7 +24,7 @@ function update(id, customer){
 }
 
 function deleteCustomer(id){
-    return axios.delete("https://127.0.0.1:8000/api/customers/"+id) ; 
+    return axios.delete("https://127.0.0.1:8000/api/customers/"+id+"/fidelityPoints") ; 
 }
 
 export default {
