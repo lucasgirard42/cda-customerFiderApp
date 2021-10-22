@@ -33,7 +33,7 @@ class FidelityPoints
     private $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      * @Groups({"fidelityPoints:read", "fidelityPoints:write", "customers:read", "customers:write", "user:read", "fidelityPoints_subresource"})
      * @Assert\NotBlank(message="Le point de la fidélité est obligatoire !")
      * 
