@@ -44,12 +44,12 @@ const Navbar = ({ history }) => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/fidelityPoints">
-                Réglage
+                point de fidilité
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                About
+              <NavLink className="nav-link" to="/addPoint">
+                addpoint
               </NavLink>
             </li>
           </ul>

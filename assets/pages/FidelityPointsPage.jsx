@@ -15,6 +15,7 @@ const FidelityPointsPage = () => {
   const fetchFidelityPoints = async () => {
     try {
       const data = await fidelityPointsAPi.findAll();
+      // console.log(data);
       setFidelityPoints(data);
     } catch (error) {
       console.log(error.response);
@@ -61,7 +62,7 @@ const FidelityPointsPage = () => {
             
   );
 
-  console.log(filteredFidelityPoints);
+  // console.log(filteredFidelityPoints);
   // Pagination des données
   const paginatedFidelityPoints = Pagination.getData(
     filteredFidelityPoints,

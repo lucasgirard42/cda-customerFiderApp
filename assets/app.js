@@ -24,6 +24,8 @@ import UsersPage from "./pages/UsersPage";
 // any CSS you import will output into a single css file (app.css in this case)
 import "./styles/app.css";
 import RegisterPage from "./pages/RegisterPage";
+import AddPoint from "./pages/addPoint";
+import TestPoint from "./pages/TestPoint";
 
 AuthAPI.setup();
 
@@ -47,6 +49,13 @@ const App = () => {
           <Switch>
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
+            
+            <PrivateRoute path="/addPoint/:id" component={AddPoint} />
+            <PrivateRoute path="/addPoint" component={AddPoint} />
+
+            <PrivateRoute path="/testPoint" component={TestPoint}/>
+            <PrivateRoute path="/testPoint/:id" component={TestPoint}/>
+
             <PrivateRoute path="/users" component={UsersPage} />
             <PrivateRoute path="/fidelityPoints/:id" component={FidelityPointPage} />
             <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>

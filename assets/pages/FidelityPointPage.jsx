@@ -128,6 +128,7 @@ const FidelityPoint = ({ history, match }) => {
                 </option>
               ))}
             </select>
+            <button>+</button>
             {/* <p className="invalid-feedback">{error}</p> */}
           </div>
           <div className="form-group">

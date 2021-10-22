@@ -62,7 +62,7 @@ class FidelityPoints
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-       
+       $this->pointFidelityCustomer = 0;
     }
 
     public function getId(): ?int
@@ -70,12 +70,12 @@ class FidelityPoints
         return $this->id;
     }
 
-    public function getPointFidelityCustomer(): ?string
+    public function getPointFidelityCustomer(): ?float
     {
         return $this->pointFidelityCustomer;
     }
 
-    public function setPointFidelityCustomer(?string $pointFidelityCustomer): self
+    public function setPointFidelityCustomer(?float $pointFidelityCustomer): self
     {
         $this->pointFidelityCustomer = $pointFidelityCustomer;
 
