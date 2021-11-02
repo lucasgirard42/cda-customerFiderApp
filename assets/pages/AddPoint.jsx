@@ -54,7 +54,8 @@ const AddPoint = ({ match }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        await fidelityPointsAPi.update(id, fidelityPoint);
+        const data = await fidelityPointsAPi.update(id, fidelityPoint);
+        console.log(data,'blba');
     } catch (error) {
       console.log(error.response);
     }
@@ -62,8 +63,8 @@ const AddPoint = ({ match }) => {
 
   return (
     <>
-      <h1>add point</h1>
-      <table className="table ">
+      {/* <h1>add point</h1> */}
+      {/* <table className="table ">
         <thead>
           <tr>
             <th>client</th>
@@ -73,7 +74,7 @@ const AddPoint = ({ match }) => {
           </tr>
         </thead>
         <tbody>
-          {/* {fidelityPoint.map((point)=>(
+          {fidelityPoint.map((point)=>(
           <tr key={point.id}>
             <td>{point.customer.email}</td>
             <td>{point.pointFidelityCustomer} points</td>
@@ -83,7 +84,7 @@ const AddPoint = ({ match }) => {
               <button className="btn btn-sm btn-success " onClick={handleIncrement}>+1</button>
             </td>
           </tr>
-            ))} */}
+            ))}
           <tr>
             <td>{fidelityPoint.customer}</td>
             <td>{fidelityPoint.pointFidelityCustomer}</td>
@@ -98,11 +99,11 @@ const AddPoint = ({ match }) => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <p>{fidelityPoint.customer}</p>
-          <p>{fidelityPoint.pointFidelityCustomer}</p>
+          {/* <p>{fidelityPoint.customer}</p>
+          <p>{fidelityPoint.pointFidelityCustomer}</p> */}
           <button
                 className="btn btn-sm btn-success"
                 onClick={handleIncrement}

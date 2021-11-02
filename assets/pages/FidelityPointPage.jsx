@@ -12,15 +12,25 @@ const FidelityPoint = ({ history, match }) => {
 
   // Etats
   const [fidelityPoint, setFidelityPoint] = useState({
-    pointFidelityCustomer: "",
+    pointFidelityCustomer: 0,
     customer: "",
   });
+  // const [fidelityPoint, setFidelityPoint] = useState([]);
+
   const [customers, setCustomers] = useState([]);
   const [editing, setEditing] = useState(false);
   const [errors, setErrors] = useState({
     pointFidelityCustomer: "",
     customer: "",
   });
+
+  const handleIncrement = () => {
+    setFidelityPoint({
+      ...fidelityPoint,
+      pointFidelityCustomer: fidelityPoint.pointFidelityCustomer + (fidelityPoint.pointFidelityCustomer < 11 ? 1:0 )   // <------ a revoir
+    });
+  };
+
 
   // Récupération des clients
   const fetchCustomers = async () => {
@@ -41,7 +51,7 @@ const FidelityPoint = ({ history, match }) => {
     try {
       const data = await FidelityPointsAPi.find(id);
       const { pointFidelityCustomer, customer } = data;
-
+      
       setFidelityPoint({ pointFidelityCustomer, customer: customer.id });
     } catch (error) {
       console.log(error.response);
@@ -74,7 +84,9 @@ const FidelityPoint = ({ history, match }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+
       if (editing) {
+        console.log(fidelityPoint);
         await FidelityPointsAPi.update(id, fidelityPoint);
         history.replace("/fidelityPoints");
         // Todo notificacion
@@ -97,6 +109,8 @@ const FidelityPoint = ({ history, match }) => {
     }
   };
 
+  
+
   return (
     <>
       
@@ -104,16 +118,27 @@ const FidelityPoint = ({ history, match }) => {
           <h1>Création des point de fidelité</h1>
         )}
         <form onSubmit={handleSubmit}>
-          <Field
+          {/* <Field
             name="pointFidelityCustomer"
-            type="number"
+            type="hidden"       // <------------------ A revoir sur ce type
             placeholder="nombre de point de fidelité"
             label="point"
             onChange={handleChange}
             value={fidelityPoint.pointFidelityCustomer}
             errors={errors.pointFidelityCustomer}
-          />
+          /> */}
           <div className="form-group">
+          {/* <p>{fidelityPoint.customer}</p>
+          <p>{fidelityPoint.pointFidelityCustomer}</p> */}
+          <button
+                className="btn btn-sm btn-success"
+                onClick={handleIncrement}
+                type="submit"
+              >
+                +1
+              </button>
+        </div>
+          {/* <div className="form-group">
             <label htmlFor="customer">client</label>
             <select
               name="customer"
@@ -129,9 +154,9 @@ const FidelityPoint = ({ history, match }) => {
               ))}
             </select>
             <button>+</button>
-            {/* <p className="invalid-feedback">{error}</p> */}
-          </div>
-          <div className="form-group">
+           
+          </div> */}
+          <div className="form-group mt-3">
             <button type="submit" className="btn btn-success">
               ADD
             </button>

@@ -20,10 +20,13 @@ function create(fidelityPoint) {
 }
 
 function update(id, fidelityPoint) {
-  return axios.put("https://127.0.0.1:8000/api/fidelity_points/" + id, {
+  console.log(fidelityPoint.customer,'ddd');
+  return axios.put("https://127.0.0.1:8000/api/fidelity_points/" + id,
+  {
     ...fidelityPoint,
     customer: `/api/customers/${fidelityPoint.customer}`,
-  });
+  }
+  );
 }
 
 function deleteFidelityPoint(id) {

@@ -21,11 +21,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *                            "POST"={"security"="is_granted('ROLE_USER')"}
  *                           },
  *      itemOperations={"GET",
+ *         
  *                      "PUT",
- *                      "DELETE"={"method"="delete", "path"="/customers/{id}/fidelityPoints"}
+ *                      "DELETE"={"method"="delete", "path"="/customers/{id}/fidelity_points"}
  *          },
  *       subresourceOperations={
- *      "fidelityPoints_get_subresource"={"path"="/customers/{id}/fidelityPoints"}
+ *      "fidelityPoints_get_subresource"={"path"="/customers/{id}/fidelity_points"}
  *                                   },
  *      normalizationContext={"groups"={"customers:read"}},
  *      denormalizationContext={"groups"={"customers:write"}}
@@ -121,7 +122,7 @@ class Customers
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=FidelityPoints::class, mappedBy="customer", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=FidelityPoints::class, mappedBy="customer", cascade={ "persist", "remove"})
      * @Groups({"customers:read", "customers:write", "users:read"})
      * @ApiSubresource
      */
@@ -138,6 +139,7 @@ class Customers
     {
         $this->createdAt = new \DateTime();
         $this->fidelityPoints = new ArrayCollection();
+        // $this->pointFidelityCustomer = 0;
        
 
     }

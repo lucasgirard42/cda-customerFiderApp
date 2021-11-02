@@ -26,6 +26,7 @@ import "./styles/app.css";
 import RegisterPage from "./pages/RegisterPage";
 import AddPoint from "./pages/addPoint";
 import TestPoint from "./pages/TestPoint";
+import CustomerIdPage from "./pages/CustomerIdPage";
 
 AuthAPI.setup();
 
@@ -59,6 +60,8 @@ const App = () => {
             <PrivateRoute path="/users" component={UsersPage} />
             <PrivateRoute path="/fidelityPoints/:id" component={FidelityPointPage} />
             <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>
+
+            <PrivateRoute path="/customer/:id" component={CustomerIdPage} />
             <PrivateRoute path="/customers/:id" component={CustomerPage} />
             <PrivateRoute path="/customers" component={CustomersPage} />
             <Route path="/" component={HomePage} />

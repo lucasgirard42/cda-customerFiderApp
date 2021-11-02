@@ -24,7 +24,7 @@ function update(id, customer){
 }
 
 function deleteCustomer(id){
-    return axios.delete("https://127.0.0.1:8000/api/customers/"+id+"/fidelityPoints") ; 
+    return axios.delete("https://127.0.0.1:8000/api/customers/"+id+"/fidelity_points") ; 
 }
 
 export default {

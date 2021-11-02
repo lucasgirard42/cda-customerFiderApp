@@ -3,6 +3,8 @@ import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
 
+import FidelityPointsAPi from "../services/fidelityPointsAPi";
+
 const CustomerPage = (props) => {
 
   const {id ="new"} = props.match.params;
@@ -20,7 +22,19 @@ const CustomerPage = (props) => {
     society: "",
     // image: "",
     service: "",
+    fidelityPoints: [
+      {
+        pointFidelityCustomer: 0
+      }
+    ]
   });
+
+  // const [fidelityPoint, setFidelityPoint] = useState({
+  //   pointFidelityCustomer: 0,
+  //   customer: "",
+  // });
+
+
 
   // console.log(props);
   const [errors, setErrors] = useState({
@@ -34,7 +48,10 @@ const CustomerPage = (props) => {
     society: "",
     // image: "",
     service: "",
+    
   });
+
+
 
   const [editing, setEditing] = useState(false);
 
@@ -187,6 +204,16 @@ const CustomerPage = (props) => {
             placeholder="Type de service du client"
             error={errors.service}
           />
+          <Field
+            name="pointFidelityCustomer"
+            type="hidden"       // <------------------ A revoir sur ce type
+            placeholder="nombre de point de fidelité"
+            // label="0 point"
+            onChange={handleChange}
+            value={customer.fidelityPoints.pointFidelityCustomer}
+           
+          />
+
           <div className="form-group">
             <button type="submit" className="btn btn-success">
               Enregistrer
