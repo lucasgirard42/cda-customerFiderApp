@@ -63,6 +63,7 @@ class FidelityPoints
     {
         $this->createdAt = new \DateTime();
        $this->pointFidelityCustomer = 0;
+    
     }
 
     public function getId(): ?int
@@ -77,7 +78,15 @@ class FidelityPoints
 
     public function setPointFidelityCustomer(?float $pointFidelityCustomer): self
     {
-        $this->pointFidelityCustomer = $pointFidelityCustomer;
+        $init = 0;
+        if ($pointFidelityCustomer < 11 ? 1:0) {
+            
+            $this->pointFidelityCustomer = $pointFidelityCustomer;
+        }
+        else {
+            $this->pointFidelityCustomer = $init;
+        }
+        
 
         return $this;
     }

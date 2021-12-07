@@ -4,6 +4,7 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
+import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
@@ -27,6 +28,8 @@ import RegisterPage from "./pages/RegisterPage";
 import AddPoint from "./pages/addPoint";
 import TestPoint from "./pages/TestPoint";
 import CustomerIdPage from "./pages/CustomerIdPage";
+import SettingPage from "./pages/SettingPage";
+import SettingUserPage from "./pages/SettingUserPage";
 
 AuthAPI.setup();
 
@@ -57,7 +60,13 @@ const App = () => {
             <PrivateRoute path="/testPoint" component={TestPoint}/>
             <PrivateRoute path="/testPoint/:id" component={TestPoint}/>
 
-            <PrivateRoute path="/users" component={UsersPage} />
+            {/* <PrivateRoute path="/users" component={UsersPage} />
+            <PrivateRoute path="/users/:id" component={UsersPage} /> */}
+
+            
+            <PrivateRoute path="/setting/:id" component={SettingUserPage} />
+            <PrivateRoute path="/setting" component={SettingPage} />
+
             <PrivateRoute path="/fidelityPoints/:id" component={FidelityPointPage} />
             <PrivateRoute path="/fidelityPoints" component={FidelityPointsPage}/>
 

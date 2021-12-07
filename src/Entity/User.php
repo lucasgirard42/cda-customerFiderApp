@@ -69,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $mail;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Groups({"users:read", "users:write"})
      * 
      */
@@ -210,12 +210,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getReduction(): ?int
+    public function getReduction(): ?string
     {
         return $this->reduction;
     }
 
-    public function setReduction(?int $reduction): self
+    public function setReduction(?string $reduction): self
     {
         $this->reduction = $reduction;
 

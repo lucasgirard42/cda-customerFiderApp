@@ -59,8 +59,8 @@ const CustomerPage = (props) => {
   // Récuprération du customer selon l'id 
   const fetchCustomer = async (id) => {
     try {
-      const {firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints} = await CustomersAPI.find(id);  // destructuration de data 
-      setCustomer({firstName, lastName, email, phone, address, zipcode, city, society, service, fidelityPoints})
+      const {firstName, lastName, email, phone, address, zipcode, city, society, service} = await CustomersAPI.find(id);  // destructuration de data 
+      setCustomer({firstName, lastName, email, phone, address, zipcode, city, society, service})
       // console.log(data);
     } catch (error) {
       console.log(error.response);
@@ -204,7 +204,7 @@ const CustomerPage = (props) => {
             placeholder="Type de service du client"
             error={errors.service}
           />
-          <Field
+          {/* <Field
             name="pointFidelityCustomer"
             type="hidden"       // <------------------ A revoir sur ce type
             placeholder="nombre de point de fidelité"
@@ -212,7 +212,7 @@ const CustomerPage = (props) => {
             onChange={handleChange}
             value={customer.fidelityPoints.pointFidelityCustomer}
            
-          />
+          /> */}
 
           <div className="form-group">
             <button type="submit" className="btn btn-success">

@@ -1,15 +1,52 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import AuthAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
+import UsersAPI from "../services/UsersAPI";
 
-const Navbar = ({ history }) => {
+const Navbar = ({ history}) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const handleLogout = () => {
     AuthAPI.logout();
     setIsAuthenticated(false);
     history.push("/login");
   };
+
+  const [users, setUser] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const data = await UsersAPI.findAll(); 
+      setUser(data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+//   const fetchUser = async (id) =>{
+//     try {
+//        const data =  await UsersAPI.find(id);
+//         // setUser({email, company, mail, reduction })
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error.response);
+//     }
+// }
+
+// useEffect(() => {
+//   fetchUser(id);
+// }, [id]);
+
+// console.log(AuthContext);
+
+useEffect(() => {
+  fetchUsers(); 
+}, []);
+
+
+  // console.log('c mon id',match);
+
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -50,6 +87,11 @@ const Navbar = ({ history }) => {
             <li className="nav-item">
               <NavLink className="nav-link" to="/addPoint">
                 addpoint
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/setting/31">
+                Paramètre 
               </NavLink>
             </li>
           </ul>

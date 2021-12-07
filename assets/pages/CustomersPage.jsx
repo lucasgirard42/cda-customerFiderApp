@@ -78,7 +78,7 @@ const CustomersPage = ({match}) => {
   
   const handleIncrement = async (id, id_customer, previousPointFidelityCustomer) => {
     try {
-      await fidelityPointsAPi.update(id, {customer: id_customer, pointFidelityCustomer: previousPointFidelityCustomer + 1  });
+      await fidelityPointsAPi.update(id, {customer: id_customer, pointFidelityCustomer: previousPointFidelityCustomer + 1});
       await fetchCustomers();
      } catch (error) {
        console.log(error.response);

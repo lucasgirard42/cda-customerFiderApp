@@ -27,7 +27,7 @@ const FidelityPoint = ({ history, match }) => {
   const handleIncrement = () => {
     setFidelityPoint({
       ...fidelityPoint,
-      pointFidelityCustomer: fidelityPoint.pointFidelityCustomer + (fidelityPoint.pointFidelityCustomer < 11 ? 1:0 )   // <------ a revoir
+      pointFidelityCustomer: fidelityPoint.pointFidelityCustomer + (fidelityPoint.pointFidelityCustomer < 4 ? 1:0 )   // <------ a revoir
     });
   };
 
