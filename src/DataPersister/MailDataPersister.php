@@ -1,0 +1,59 @@
+<?php
+// namespace App\DataPersister;
+
+// // use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
+// use ApiPlatform\Core\DataPersister\DataPersisterInterface;
+// use App\Entity\Customers;
+// use App\Entity\User;
+// use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\Mailer\MailerInterface;
+// // use Symfony\Component\Mime\Email;
+// use App\Factory\Email;
+
+
+// final class MailDataPersister implements DataPersisterInterface
+// {
+//     private DataPersisterInterface $decorated;
+//     private MailerInterface $mailer;
+//     private Email $email; 
+
+//     public function __construct(DataPersisterInterface $decorated, MailerInterface $mailer, Email $email)
+//     {
+//         $this->decorated = $decorated;
+//         $this->mailer = $mailer;
+//         $this ->email = $email;
+//     }
+
+//     public function supports($data, array $context = []): bool
+//     {
+//         return $data instanceof User ? $this->decorated->supports($data, $context) : false;
+
+//     }
+
+//     public function persist($data, array $context = [])
+//     {
+//         $result = $this->decorated->persist($data, $context);
+
+//         // dd($context['collection_operation_name']);
+        
+//         if (strtoupper($context['collection_operation_name']) === Request::METHOD_POST && null !== $this->user) {
+//             $email = $this->email->create(
+//                         $this->user->getEmail(),
+//                         'no-reply@feederapp.fr',
+//                         'Article #' . $data->getId(),
+//                         $data->getContent()
+//                     );
+        
+//                     $this->mailer->send($email);
+//                 }
+        
+//                 return $result;
+//     }
+
+//     public function remove($data, array $context = [])
+//     {
+//         return $this->decorated->remove($data, $context);
+//     }
+
+   
+// }

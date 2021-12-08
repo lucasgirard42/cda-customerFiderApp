@@ -22,6 +22,7 @@ function authenticate(credentials) {
 
       // On prévient axios qu'on a maintenant un header par default sur toutes nos future requete http
       setAxiosToken(token);
+      // console.log(response);
 
       return true;
     });
@@ -68,9 +69,30 @@ function isAuthenticated() {
 
 }
 
+
+function isUserData() {
+  const token = window.localStorage.getItem("authToken");
+  if(token){
+          // console.log('ppl');
+          const jwtData = jwtDecode(token);
+          console.log('usertoken',jwtData)
+          if (jwtData  * 1000 > new Date().getTime()){
+          
+            
+              return jwtData
+
+          }
+          return jwtData
+        }
+       
+}
+
+
+
 export default {
   authenticate,
   logout,
   setup,
-  isAuthenticated
+  isAuthenticated,
+  isUserData
 };

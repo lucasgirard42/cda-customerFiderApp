@@ -9,6 +9,8 @@ const SettingUserPage = (props) => {
    
    const {id} = props.match.params
 
+   console.log(id);
+
    const [user, setUser] = useState({
        email:"",
        company:"",

@@ -3,46 +3,19 @@ import { NavLink } from "react-router-dom";
 import AuthAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
 import UsersAPI from "../services/UsersAPI";
+import UserContext from "../contexts/UserContext";
 
 const Navbar = ({ history}) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const {userData, setUserData} = useContext(AuthContext);
   const handleLogout = () => {
     AuthAPI.logout();
     setIsAuthenticated(false);
     history.push("/login");
   };
 
-  const [users, setUser] = useState([]);
 
-  const fetchUsers = async () => {
-    try {
-      const data = await UsersAPI.findAll(); 
-      setUser(data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-//   const fetchUser = async (id) =>{
-//     try {
-//        const data =  await UsersAPI.find(id);
-//         // setUser({email, company, mail, reduction })
-//         console.log(data);
-//     } catch (error) {
-//         console.log(error.response);
-//     }
-// }
-
-// useEffect(() => {
-//   fetchUser(id);
-// }, [id]);
-
-// console.log(AuthContext);
-
-useEffect(() => {
-  fetchUsers(); 
-}, []);
-
+console.log("ppl data user ", setUserData);
 
   // console.log('c mon id',match);
 

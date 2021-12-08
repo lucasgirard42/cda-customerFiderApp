@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import Field from "../components/forms/Field";
 import AuthContext from "../contexts/AuthContext";
 import AuthAPI from "../services/authAPI";
+import UserContext from "../contexts/UserContext";
 
 const LoginPage = ({ history }) => {
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated, setUserData } = useContext(AuthContext);
+  // const { setUserData } = useContext(UserContext);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -25,15 +27,21 @@ const LoginPage = ({ history }) => {
 
     try {
       await AuthAPI.authenticate(credentials);
+      const jwData = await AuthAPI.isUserData();
+      console.log('ppl', jwData);
       setError("");
       setIsAuthenticated(true);
+      // console.log('ppl2', jwData);
       history.replace("/customers");
+      setUserData(jwData);
     } catch (error) {
       setError("aucun compte possède cette adresse email");
     }
   };
 
-  // console.log(credentials);
+
+
+  
   return (
     <>
       <h1>connexion l'app</h1>
