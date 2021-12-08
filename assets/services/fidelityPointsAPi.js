@@ -20,7 +20,7 @@ function create(fidelityPoint) {
 }
 
 function update(id, fidelityPoint) {
-  console.log(fidelityPoint.customer,'ddd');
+  // console.log(fidelityPoint.customer,'ddd');
   return axios.put("https://127.0.0.1:8000/api/fidelity_points/" + id,
   {
     ...fidelityPoint,

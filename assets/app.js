@@ -14,6 +14,8 @@ import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthContext from "./contexts/AuthContext";
+import UserContext from "./contexts/UserContext";
+
 import CustomersPage from "./pages/CustomersPage";
 import CustomerPage from "./pages/CustomerPage";
 import FidelityPointsPage from "./pages/FidelityPointsPage";
@@ -37,6 +39,7 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     AuthAPI.isAuthenticated()
   );
+  const [userData, setUserData] = useState({});
 
   const NavbarWithRouter = withRouter(Navbar);
 
@@ -47,6 +50,12 @@ const App = () => {
         setIsAuthenticated,
       }}
     >
+     <UserContext.Provider
+      value={{
+        userData,
+        setUserData,
+      }}
+    >  
       <HashRouter>
         <NavbarWithRouter />
         <main className="container pt-5">
@@ -77,7 +86,7 @@ const App = () => {
           </Switch>
         </main>
       </HashRouter>
-      
+    </UserContext.Provider> 
     </AuthContext.Provider>
   );
 };

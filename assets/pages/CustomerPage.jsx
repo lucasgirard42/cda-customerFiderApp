@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
+
+import UserContext from "../contexts/UserContext";
+
 
 import FidelityPointsAPi from "../services/fidelityPointsAPi";
 
@@ -9,7 +12,9 @@ const CustomerPage = (props) => {
 
   const {id ="new"} = props.match.params;
 
- 
+  const {userData, setUserData} = useContext(UserContext);
+
+ console.log("ppl fuck user ", userData);
 
   const [customer, setCustomer] = useState({
     lastName: "",
@@ -223,7 +228,6 @@ const CustomerPage = (props) => {
             </Link>
           </div>
         </form>
-      
     </>
   );
 };

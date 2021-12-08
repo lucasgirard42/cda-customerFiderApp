@@ -5,20 +5,20 @@ import AuthContext from "../contexts/AuthContext";
 import UsersAPI from "../services/UsersAPI";
 import UserContext from "../contexts/UserContext";
 
-const Navbar = ({ history}) => {
+const Navbar = ({ history, match}) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  const {userData, setUserData} = useContext(AuthContext);
+  // const {userData, setUserData } 
+  const {userData, setUserData} = useContext(UserContext);
   const handleLogout = () => {
     AuthAPI.logout();
     setIsAuthenticated(false);
     history.push("/login");
   };
+  // const { id} = match.params;
 
-
-console.log("ppl data user ", setUserData);
+console.log("ppl data user ", userData);
 
   // console.log('c mon id',match);
-
 
 
   return (
@@ -62,11 +62,15 @@ console.log("ppl data user ", setUserData);
                 addpoint
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/setting/31">
+           
+            <li  className="nav-item">
+            
+              <NavLink className="nav-link" to={"/setting/" + userData.id} >
                 Paramètre 
               </NavLink>
+     
             </li>
+         
           </ul>
           <ul className="navbar-nav ml-auto">
             {(!isAuthenticated && (
