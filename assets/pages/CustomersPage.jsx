@@ -5,6 +5,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import fidelityPointsAPi from "../services/fidelityPointsAPi";
 import FidelityPoint from "./FidelityPointPage";
+import { toast } from "react-toastify";
 
 const CustomersPage = ({match}) => {
   const { id} = match.params;
@@ -37,6 +38,7 @@ const CustomersPage = ({match}) => {
     setCustomers(customers.filter((customer) => customer.id !== id));
     try {
       await CustomersAPI.delete(id);
+      toast.success("votre client a été supprimé !");
     } catch (error) {
       setCustomers(originalCustomers);
       console.log(error.response);
@@ -79,6 +81,7 @@ const CustomersPage = ({match}) => {
   const handleIncrement = async (id, id_customer, previousPointFidelityCustomer) => {
     try {
       await fidelityPointsAPi.update(id, {customer: id_customer, pointFidelityCustomer: previousPointFidelityCustomer + 1});
+      toast.info("vous avez ajouté 1 point de fidélité à votre client !");
       await fetchCustomers();
      } catch (error) {
        console.log(error.response);

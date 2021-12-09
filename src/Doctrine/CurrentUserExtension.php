@@ -37,7 +37,7 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
     {   
         $user = $this->security->getUser();
 
-        // 2. Si on demande des invoices ou des customers alors, agir sur la requête pour qu'elle tienne compte de l'utilisateur connecté
+        // 2. Si on demande des FidelityPoint ou des customers alors, agir sur la requête pour qu'elle tienne compte de l'utilisateur connecté
         if (
             ($resourceClass === Customers::class || $resourceClass === FidelityPoints::class)
             &&

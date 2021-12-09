@@ -32,6 +32,8 @@ import TestPoint from "./pages/TestPoint";
 import CustomerIdPage from "./pages/CustomerIdPage";
 import SettingPage from "./pages/SettingPage";
 import SettingUserPage from "./pages/SettingUserPage";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 AuthAPI.setup();
 
@@ -86,6 +88,7 @@ const App = () => {
           </Switch>
         </main>
       </HashRouter>
+      <ToastContainer position={toast.POSITION.TOP_RIGHT} /> 
     </UserContext.Provider> 
     </AuthContext.Provider>
   );

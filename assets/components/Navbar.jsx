@@ -4,6 +4,7 @@ import AuthAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
 import UsersAPI from "../services/UsersAPI";
 import UserContext from "../contexts/UserContext";
+import { toast } from "react-toastify";
 
 const Navbar = ({ history, match}) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const Navbar = ({ history, match}) => {
   const handleLogout = () => {
     AuthAPI.logout();
     setIsAuthenticated(false);
+    toast.info("Vous êtes déconnecté");
     history.push("/login");
   };
   // const { id} = match.params;
@@ -57,16 +59,16 @@ console.log("ppl data user ", userData);
                 point de fidilité
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link" to="/addPoint">
                 addpoint
               </NavLink>
-            </li>
+            </li> */}
            
             <li  className="nav-item">
             
               <NavLink className="nav-link" to={"/setting/" + userData.id} >
-                Paramètre 
+                Paramètres 
               </NavLink>
      
             </li>

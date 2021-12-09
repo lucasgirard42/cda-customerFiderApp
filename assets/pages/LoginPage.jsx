@@ -4,6 +4,7 @@ import AuthContext from "../contexts/AuthContext";
 import AuthAPI from "../services/authAPI";
 import UsersAPI from "../services/UsersAPI";
 import UserContext from "../contexts/UserContext";
+import { toast } from "react-toastify";
 
 const LoginPage = ({ history }) => {
   const {  setIsAuthenticated} = useContext(AuthContext);
@@ -38,11 +39,11 @@ const LoginPage = ({ history }) => {
         }
       }
       setUserData(selectedUser);
-      console.log('selec',selectedUser);
-      // console.log(isAuthenticated);    
+      toast.success("vous êtes connecté");
       history.replace("/customers");   
     } catch (error) {
-      setError("aucun compte possÃ¨de cette adresse email");
+      setError("aucun compte possède cette adresse email");
+      toast.error("Il y a une erreur dans votre adresse email ou mot de passe");
     }
   };
 

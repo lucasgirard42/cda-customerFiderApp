@@ -3,6 +3,7 @@ import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UserAPI from "../services/userAPI";
+import { toast } from "react-toastify";
 
 const RegisterPage = ({ history }) => {
   const [user, setUser] = useState({
@@ -34,15 +35,18 @@ const RegisterPage = ({ history }) => {
       ApiErrors.passwordConfirm =
         "votre confirmation de mot de passe n'est pas conforme avec le mot de passe "; // condition pour la confirmation de mdp si false alors on interrompe la requete avec un return
       setErros(ApiErrors);
+      toast.error("Il y a des erreur dans le formulaire");
       return;
     }
     try {
       await UserAPI.register(user);
       // setErros({})
+      toast.success("vous êtes inscrit ! veuillez vous connecter ");
       history.replace("/login");
       console.log(response);
     } catch (error) {
       console.log(error.response);
+      toast.error("Il y a des erreur dans le formulaire");
     }
   };
 

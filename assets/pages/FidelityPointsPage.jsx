@@ -154,9 +154,9 @@ const FidelityPointsPage = (props) => {
         <Link className="btn btn-secondary" to="/customers">
           retour a la liste des clients{" "}
         </Link>
-        <Link className="btn btn-primary" to="/fidelityPoints/new">
+        {/* <Link className="btn btn-primary" to="/fidelityPoints/new">
           crée point de fidelité
-        </Link>
+        </Link> */}
       </div>
       <div className="form-group">
         <input
@@ -172,8 +172,8 @@ const FidelityPointsPage = (props) => {
           <tr>
             <th>id</th>
             <th>Email du client</th>
-            <th>button</th>
-            <th>point test</th>
+            {/* <th>button</th>
+            <th>point test</th> */}
 
             <th>nombre de point de fidelité du client </th>
             <th>date de la création du point</th>
@@ -186,10 +186,11 @@ const FidelityPointsPage = (props) => {
             <tr key={fidelityPoint.id}>
               <td>{fidelityPoint.id}</td>
               <td>
-                <a href="#">{fidelityPoint.customer.email}</a>
+                {/* <a href="#">{fidelityPoint.customer.email}</a> */}
+                <Link to={"/customer/" + fidelityPoint.customer.id}>{fidelityPoint.customer.email}</Link>
               </td>
-              <td>
-              {/* <form onSubmit={handleSubmit}> */}
+              {/* <td>
+               <form onSubmit={handleSubmit}> 
                   <div className="form-group">
                     <button
                       className="btn btn-sm btn-success"
@@ -199,19 +200,19 @@ const FidelityPointsPage = (props) => {
                       +1
                     </button>
                   </div>
-                  {/* </form> */}
-              </td>
-              <td>{count}point</td>
+                   </form> 
+              </td> */}
+              {/* <td>{count}point</td> */}
               <td>+ {fidelityPoint.pointFidelityCustomer} point</td>
               <td>{formatDate(fidelityPoint.createdAt)}</td>
               <td>{formatDate(fidelityPoint.updatedAt)}</td>
               <td>
-                <Link
+                {/* <Link
                   to={"/fidelityPoints/" + fidelityPoint.id}
                   className="btn btn-sm btn-primary me-2"
                 >
                   Editer
-                </Link>
+                </Link> */}
                 <button
                   className="btn btn-sm btn-danger"
                   onClick={() => handleDelete(fidelityPoint.id)}

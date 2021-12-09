@@ -7,14 +7,15 @@ import UserContext from "../contexts/UserContext";
 
 
 import FidelityPointsAPi from "../services/fidelityPointsAPi";
+import { toast } from "react-toastify";
 
 const CustomerPage = (props) => {
 
   const {id ="new"} = props.match.params;
 
-  const {userData, setUserData} = useContext(UserContext);
 
- console.log("ppl fuck user ", userData);
+
+
 
   const [customer, setCustomer] = useState({
     lastName: "",
@@ -66,6 +67,7 @@ const CustomerPage = (props) => {
     try {
       const {firstName, lastName, email, phone, address, zipcode, city, society, service} = await CustomersAPI.find(id);  // destructuration de data 
       setCustomer({firstName, lastName, email, phone, address, zipcode, city, society, service})
+      
       // console.log(data);
     } catch (error) {
       console.log(error.response);
@@ -95,11 +97,12 @@ const CustomerPage = (props) => {
     try {
       if (editing) {
         await CustomersAPI.update(id, customer);
+        toast.success("La modification de votre client a été prise en compte ")
         props.history.replace("/customers"); 
         // TODO notification de success
       } else {
         await CustomersAPI.create(customer);
-
+        toast.success("Vous avez ajouté un nouveaux client")
         // TODO notification de success
         props.history.replace("/customers"); // <------- revenir a la liste des clients
       }

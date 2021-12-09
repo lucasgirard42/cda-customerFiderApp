@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import Field from '../components/forms/Field';
 import UsersAPI from '../services/UsersAPI';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 
@@ -45,6 +46,7 @@ const SettingUserPage = (props) => {
     try {
       
         await UsersAPI.update(id, user);
+        toast.success("La modification de votre compte utilisateur à été prise en compte ! ")
         // props.history.replace("/customers"); 
         // TODO notification de success
       
@@ -60,6 +62,7 @@ const SettingUserPage = (props) => {
         error.response.data.violations.map((violation) => {
           apiErrors[violation.propertyPath] = violation.message;
         });
+        toast.error("Il y a une erreur lors de la modification de votre compte client !")
         setErrors(apiErrors);
         // console.log(apiErrors);
 
