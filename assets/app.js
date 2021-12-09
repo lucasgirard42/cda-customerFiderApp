@@ -64,7 +64,7 @@ const App = () => {
           <Switch>
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
-            
+             
             <PrivateRoute path="/addPoint/:id" component={AddPoint} />
             <PrivateRoute path="/addPoint" component={AddPoint} />
 
