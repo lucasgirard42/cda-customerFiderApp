@@ -81,16 +81,16 @@ class FidelityPoints
 
     public function setPointFidelityCustomer(?float $pointFidelityCustomer): self
     {
-        // $init = 0;
-        // if ($pointFidelityCustomer < 11 ? 1:0) {
+        $init = 0;
+        if ($pointFidelityCustomer < 11 ? 1:0) {
             
-        //     $this->pointFidelityCustomer = $pointFidelityCustomer;
-        // }
-        // else {
-        //     $this->pointFidelityCustomer  = $init;
+            $this->pointFidelityCustomer = $pointFidelityCustomer;
+        }
+        else {
+            $this->pointFidelityCustomer  = $init;
             
-        // }
-        $this->pointFidelityCustomer = $pointFidelityCustomer;
+        }
+        // $this->pointFidelityCustomer = $pointFidelityCustomer;
         return $this;
     }
 
