@@ -21,27 +21,27 @@ class AppController extends AbstractController
      /**
      * @Route("/customers", name="customers")
      */
-    public function test(Customers $customers, FidelityPoints $fidelityPoints): Response
-    {   
-        $init = 0;
+    // public function test(Customers $customers, FidelityPoints $fidelityPoints): Response
+    // {   
+    //     $init = 0;
 
-        $point = $fidelityPoints -> getPointFidelityCustomer(0);
+    //     $point = $fidelityPoints -> getPointFidelityCustomer(0);
 
-        switch ($point) {
-            case 9:
-                $fidelityPoints->setPointFidelityCustomer($init);
-                break;
+    //     switch ($point) {
+    //         case 9:
+    //             $fidelityPoints->setPointFidelityCustomer($init);
+    //             break;
             
-            default:
+    //         default:
                 
-                break;
-        }
+    //             break;
+    //     }
 
-        $entityManager = $this->getDoctrine()->getManager();
-                   $entityManager->persist($fidelityPoints);
-                   $entityManager->flush();
-        return $this->render('app/index.html.twig', []);
-    }
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //                $entityManager->persist($fidelityPoints);
+    //                $entityManager->flush();
+    //     return $this->render('app/index.html.twig', []);
+    // }
 
 
 }

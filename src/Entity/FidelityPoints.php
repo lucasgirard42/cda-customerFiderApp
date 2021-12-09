@@ -7,6 +7,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\FidelityPointsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\User;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
  * @ApiResource(
@@ -78,13 +81,41 @@ class FidelityPoints
 
     public function setPointFidelityCustomer(?float $pointFidelityCustomer): self
     {
+
         $init = 0;
-        if ($pointFidelityCustomer < 11 ? 1:0) {
+        // $mailUser = $user ->getEmail();
+        // $mailCustomer = $customers->getEmail();
+        // $email = (new Email())
+    //    ->from($mailUser)
+    //    ->to($mailCustomer)
+       //->cc('cc@example.com')
+       //->bcc('bcc@example.com')
+       //->replyTo('fabien@example.com')
+       //->priority(Email::PRIORITY_HIGH)
+    //    ->subject('Bravo vous avez recu une reduction')
+    //    ->text('Sending emails is fun again!')
+    //    ->html('<p>félicitation vous avez recu 10 point de fidélité, vous avez le droit un une réduction 
+    //            de 10% pour votre prochaine séance</p>');
+    // , MailerInterface $mailer, Customers $customers, User $user
+
+        // if ($pointFidelityCustomer < 11 ? 1:0) {
             
+        //     $this->pointFidelityCustomer = $pointFidelityCustomer;
+        // }
+        // else {
+        //     $this->pointFidelityCustomer  = $init;
+            
+        // }
+
+        switch ($pointFidelityCustomer ) {
+            case 11:
+                $this->pointFidelityCustomer  = $init;
+              
+                break;
+                
+                default:
             $this->pointFidelityCustomer = $pointFidelityCustomer;
-        }
-        else {
-            $this->pointFidelityCustomer = $init;
+                break;
         }
         
 
