@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import fidelityPointsAPi from "../services/fidelityPointsAPi";
 import { Link } from "react-router-dom";
-import AddPoint from "./addPoint";
-import customersAPI from "../services/customersAPI";
+
 
 const FidelityPointsPage = (props) => {
   
@@ -87,23 +86,23 @@ const FidelityPointsPage = (props) => {
 
 
   
-  const handleIncrement = async (id) => {
-    // console.log(currentTarget);
-    // console.log(id);
+  // const handleIncrement = async (id) => {
+  //   // console.log(currentTarget);
+  //   // console.log(id);
 
-    try {
-      setFidelityPoints(
-        fidelityPoints.filter(
-          (fidelityPoint) =>
-            fidelityPoint.id === id && fidelityPoint.pointFidelityCustomer + 1 
-        )
-      );
+  //   try {
+  //     setFidelityPoints(
+  //       fidelityPoints.filter(
+  //         (fidelityPoint) =>
+  //           fidelityPoint.id === id && fidelityPoint.pointFidelityCustomer + 1 
+  //       )
+  //     );
 
-      await fidelityPointsAPi.update(id, fidelityPoints );
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
+  //     await fidelityPointsAPi.update(id, fidelityPoints );
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+  // };
 
   // const handleIncrement = async (id, id_customer, previousPointFidelityCustomer) => {
   //   try {
