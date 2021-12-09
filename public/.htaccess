@@ -31,8 +31,8 @@ RewriteEngine On
 RewriteCond %{REQUEST_URI}::$0 ^(/.+)/(.*)::\2$
 RewriteRule .* - [E=BASE:%1]
 
-Header add Access-Control-Allow-Origin "*"
-Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+# Header add Access-Control-Allow-Origin "*"
+# Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
     # Sets the HTTP_AUTHORIZATION header removed by Apache
     RewriteCond %{HTTP:Authorization} .+
     RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
