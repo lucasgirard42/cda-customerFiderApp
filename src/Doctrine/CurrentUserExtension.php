@@ -33,30 +33,37 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
         $this->addWhere($queryBuilder, $resourceClass);
     }
 
-    private function addWhere(QueryBuilder $queryBuilder, string $resourceClass): void
+    private function addWhere(QueryBuilder $queryBuilder, string $resourceClass)
     {   
-        $user = $this->security->getUser();
 
-        // 2. Si on demande des FidelityPoint ou des customers alors, agir sur la requête pour qu'elle tienne compte de l'utilisateur connecté
-        if (
-            ($resourceClass === Customers::class || $resourceClass === FidelityPoints::class)
-            &&
-            !$this->security->isGranted('ROLE_ADMIN')
-            &&
-            $user instanceof User
-        ) {
-            $rootAlias = $queryBuilder->getRootAliases()[0];
-
-            if ($resourceClass === Customers::class) {
-                $queryBuilder->andWhere("$rootAlias.user = :user");
-            } else if ($resourceClass === FidelityPoints::class) {
-                $queryBuilder->join("$rootAlias.customer", "c")
-                    ->andWhere("c.user = :user");
+        try {
+            $user = $this->security->getUser();
+    
+            // 2. Si on demande des FidelityPoint ou des customers alors, agir sur la requête pour qu'elle tienne compte de l'utilisateur connecté
+            if (
+                ($resourceClass === Customers::class || $resourceClass === FidelityPoints::class)
+                &&
+                !$this->security->isGranted('ROLE_ADMIN')
+                &&
+                $user instanceof User
+            ) {
+                $rootAlias = $queryBuilder->getRootAliases()[0];
+    
+                if ($resourceClass === Customers::class) {
+                    $queryBuilder->andWhere("$rootAlias.user = :user");
+                } else if ($resourceClass === FidelityPoints::class) {
+                    $queryBuilder->join("$rootAlias.customer", "c")
+                        ->andWhere("c.user = :user");
+                }
+    
+                $queryBuilder->setParameter("user", $user);
+               
             }
-
-            $queryBuilder->setParameter("user", $user);
-           
+            
+        } catch (\Exception $e) {
+            return 1; 
         }
+        
     }
 }
 
