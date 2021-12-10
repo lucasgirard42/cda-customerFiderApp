@@ -35,7 +35,7 @@ const RegisterPage = ({ history }) => {
       ApiErrors.passwordConfirm =
         "votre confirmation de mot de passe n'est pas conforme avec le mot de passe "; // condition pour la confirmation de mdp si false alors on interrompe la requete avec un return
       setErros(ApiErrors);
-      toast.error("Il y a des erreur dans le formulaire");
+      // toast.error("Il y a des erreur dans le formulaire");
       return;
     }
     try {

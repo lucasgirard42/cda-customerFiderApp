@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import axios from "axios";
 import Marker from '../components/beachflag.png';
 import Geocode from "react-geocode"; 
+import '../styles/custom.css';
 
 
 const CustomerIdPage = (props) => {
@@ -177,14 +178,15 @@ Geocode.enableDebug();
 
     
     return ( <>
-        <h1 className="text-center">{customer.firstName} {customer.lastName} </h1>
-        <div>
-            <p>{customer.service} </p>
+        <h1 className="text-center title-customer">{customer.firstName} {customer.lastName} </h1>
+        <div className="row justify-content-center">
+            <p className='text-center mt-5'>{customer.service}  
             {customer.fidelityPoints.map((points) => (
-                <p key={points.id} className="text-center">
-                  {points.pointFidelityCustomer} point
-                </p>
+                <span key={points.id} className="pl-5">
+                   {points.pointFidelityCustomer} point
+                </span>
               ))}
+              </p>
               <p>phone : {customer.phone}</p>
               <p>email: {customer.email}</p>
               <p>{customer.address}</p>
@@ -193,7 +195,7 @@ Geocode.enableDebug();
               
             
         </div>
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: '50vh', width: '50%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyC6wewbwA4OTyKuDe0J6l7GgQSFM1NeQ4U'}}
           // defaultCenter={defaultProps.center}
