@@ -47,7 +47,10 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
             $user instanceof User
         ) {
             $rootAlias = $queryBuilder->getRootAliases()[0];
-            dd($queryBuilder);
+            //dd($queryBuilder);
+            dd($rootAlias);
+            //SELECT o FROM APP\Entity\Customer
+            // WHERE o ... 
             
             if ($resourceClass === Customers::class) {
                 $queryBuilder->andWhere("$rootAlias.user = :user");
