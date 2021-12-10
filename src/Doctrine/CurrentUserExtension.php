@@ -35,6 +35,7 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
 
     private function addWhere(QueryBuilder $queryBuilder, string $resourceClass): void
     {   
+        // Obtenir l'utilisateur connecté
         $user = $this->security->getUser();
 
         // 2. Si on demande des FidelityPoint ou des customers alors, agir sur la requête pour qu'elle tienne compte de l'utilisateur connecté
@@ -46,14 +47,15 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
             $user instanceof User
         ) {
             $rootAlias = $queryBuilder->getRootAliases()[0];
-
+            dd($queryBuilder);
+            
             if ($resourceClass === Customers::class) {
                 $queryBuilder->andWhere("$rootAlias.user = :user");
             } else if ($resourceClass === FidelityPoints::class) {
                 $queryBuilder->join("$rootAlias.customer", "c")
-                    ->andWhere("c.user = :user");
+                ->andWhere("c.user = :user");
             }
-
+            
             $queryBuilder->setParameter("user", $user);
            
         }
