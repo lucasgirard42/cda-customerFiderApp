@@ -45,3 +45,5 @@ security:
         - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [GET, PUT, DELETE]}
         - { path: ^/api/customers, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/fidelity_points, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/setting, roles: IS_AUTHENTICATED_FULLY }
+
