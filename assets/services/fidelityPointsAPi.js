@@ -34,7 +34,7 @@ function update(id, fidelityPoint) {
 function deleteFidelityPoint(id) {
   return axios.delete( FIDELITY_POINTS_API + "/" + id);
 }
-
+ 
 export default {
   findAll,
   find,
