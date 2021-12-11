@@ -56,26 +56,6 @@ const CustomersPage = ({match}) => {
     setCurrentPage(1);
   };
 
-  //  const handleSearch = (event) => {
-  //   const value = event.currentTarget.value;
-  //   setSearch(value);
-  //   setCurrentPage(1);
-  // };
-
-  // const handleIncrement = async ( id) => {
-    
-  //   console.log(id,'c mon id ');
-  //   setFidelityPoint(
-  //     fidelityPoint.filter((f) =>f.id === id &&  f.pointFidelityCustomer +1   )
-  //     );
-      
-  //   try {
-  //     await fidelityPointsAPi.update(id, fidelityPoint);
-  //  } catch (error) {
-  //    console.log(error.response);
-  //  }
-  
-  // };
 
   
   const handleIncrement = async (id, id_customer, previousPointFidelityCustomer) => {
@@ -106,7 +86,7 @@ const CustomersPage = ({match}) => {
   );
 
   const formatDate = (str) => moment(str).format("DD/MM/YYYY");
-  console.log(customers);
+  // console.log(customers);
 
   return (
     <>
