@@ -60,7 +60,7 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
             }
             
             //$queryBuilder->setParameter("user", $user);
-            dd($queryBuilder);
+            // dd($queryBuilder);
         }
     }
 }
