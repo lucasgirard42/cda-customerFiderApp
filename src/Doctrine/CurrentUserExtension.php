@@ -53,6 +53,7 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
                 $queryBuilder->join("$rootAlias.customer", "c")
                 ->andWhere("c.user = :user");
             }
+            $queryBuilder->setParameter("user", $user);
         }
     }
 }
