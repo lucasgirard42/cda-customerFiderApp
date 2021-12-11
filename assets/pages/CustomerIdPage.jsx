@@ -33,8 +33,8 @@ Geocode.enableDebug();
 //   (error) => {
 //     console.error(error);
 //   }
-// );
-
+// ); 
+  
 // Get formatted address, city, state, country from latitude & longitude when
 // Geocode.setLocationType("ROOFTOP") enabled
 // the below parser will work for most of the countries
