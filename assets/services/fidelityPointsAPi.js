@@ -20,7 +20,7 @@ function create(fidelityPoint) {
     customer: `/api/customers/${fidelityPoint.customer}`,
   });
 }
-
+ 
 function update(id, fidelityPoint) {
   // console.log(fidelityPoint.customer,'ddd');
   return axios.put( FIDELITY_POINTS_API + "/" + id,
