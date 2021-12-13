@@ -24,7 +24,7 @@ console.log("ppl data user ", userData);
 
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Fider app

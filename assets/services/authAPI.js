@@ -70,26 +70,6 @@ function isAuthenticated() {
 
 }
 
-
-// function isUserData() {
-//   const token = window.localStorage.getItem("authToken");
-//   if(token){
-//           // console.log('ppl');
-//           const jwtData = jwtDecode(token);
-//           console.log('usertoken',jwtData)
-//           if (jwtData  * 1000 > new Date().getTime()){
-          
-            
-//               return jwtData
-
-//           }
-//           return jwtData
-//         }
-       
-// }
-
-
-
 export default {
   authenticate,
   logout,

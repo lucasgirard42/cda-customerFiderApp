@@ -52,7 +52,7 @@ const LoginPage = ({ history }) => {
   
   return (
     <>
-      <h1>connexion l'app</h1>
+      <h1>connexion à l'application Feeder</h1>
 
       <form onSubmit={handleSubmit}>
         <Field

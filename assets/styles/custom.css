@@ -1,3 +1,34 @@
 .title-customer{
     color: red;
 }
+
+/* .logo-app{
+    display: flex;
+    align-items: center;
+} */
+
+.imgLanding{
+ 
+    max-width: 80%;
+  
+
+}
+
+
+.imgMobile{
+    max-width: 50%;
+}
+.sectionTitleApp{
+    background-color: rgba(229, 229, 229, 0.35);
+
+}
+
+@media screen and (max-width: 1200px) {
+    .articleApp {
+      
+      flex-direction: column-reverse;
+
+    }
+  }
+
+
