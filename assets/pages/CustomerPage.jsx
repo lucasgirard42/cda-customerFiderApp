@@ -3,10 +3,7 @@ import Field from "../components/forms/Field";
 import { Link } from "react-router-dom";
 import CustomersAPI from "../services/customersAPI";
 
-import UserContext from "../contexts/UserContext";
 
-
-import FidelityPointsAPi from "../services/fidelityPointsAPi";
 import { toast } from "react-toastify";
 
 const CustomerPage = (props) => {
