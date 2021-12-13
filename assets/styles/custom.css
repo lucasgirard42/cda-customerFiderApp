@@ -1,11 +1,4 @@
-.title-customer{
-    color: red;
-}
 
-/* .logo-app{
-    display: flex;
-    align-items: center;
-} */
 
 .imgLanding{
  
@@ -14,6 +7,9 @@
 
 }
 
+p{
+    font-size: 20px;
+}
 
 .imgMobile{
     max-width: 50%;
@@ -29,6 +25,19 @@
       flex-direction: column-reverse;
 
     }
+    .googleMap{
+        width: 100% !important;
+    }
   }
 
 
+.iconCustomer
+{
+    
+    width: 5em;
+    height: 5em;
+}
+
+.adressCustomer{
+    align-items: center;
+}

@@ -77,6 +77,7 @@ const SettingUserPage = (props) => {
 
    return (
      <>
+     {/* <div className='bg-light p-3'> */}
        <h1 className="text-center">{user.email}</h1>
        <div>
          <p>mail : {user.mail}</p>
@@ -117,6 +118,7 @@ const SettingUserPage = (props) => {
            </Link>
          </div>
        </form>
+     {/* </div> */}
      </>
    );
 }

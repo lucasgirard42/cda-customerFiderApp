@@ -5,6 +5,7 @@ import axios from "axios";
 import Marker from '../components/beachflag.png';
 import Geocode from "react-geocode"; 
 import '../styles/custom.css';
+import {FaUserAlt,FaPhone, FaAt} from 'react-icons/fa';
 
 
 const CustomerIdPage = (props) => {
@@ -23,50 +24,6 @@ Geocode.setLocationType("ROOFTOP");
 
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
-
-// Get address from latitude & longitude.
-// Geocode.fromLatLng("46.02688209999999", "4.0864872").then(
-//   (response) => {
-//     const address = response.results[0].formatted_address;
-//     console.log(address);
-//   },
-//   (error) => {
-//     console.error(error);
-//   }
-// ); 
-  
-// Get formatted address, city, state, country from latitude & longitude when
-// Geocode.setLocationType("ROOFTOP") enabled
-// the below parser will work for most of the countries
-// Geocode.fromLatLng("46.0300641", "4.0851551").then(
-//   (response) => {
-//     const address = response.results[0].formatted_address;
-//     let city, state, country;
-//     for (let i = 0; i < response.results[0].address_components.length; i++) {
-//       for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
-//         switch (response.results[0].address_components[i].types[j]) {
-//           case "locality":
-//             city = response.results[0].address_components[i].long_name;
-//             break;
-//           case "administrative_area_level_1":
-//             state = response.results[0].address_components[i].long_name;
-//             break;
-//           case "country":
-//             country = response.results[0].address_components[i].long_name;
-//             break;
-//         }
-//       }
-//     }
-//     console.log(city, state, country);
-//     console.log(address);
-//   },
-//   (error) => {
-//     console.error(error);
-//   }
-// );
-
-
-
 
     const {id } = props.match.params;
     const [customer, setCustomer] = useState({
@@ -102,8 +59,6 @@ Geocode.enableDebug();
         }
     }
 
-    // AIzaSyA-4g_KnJ74Mp0CROM02GuvoJJ4vqwd9EU
-
     useEffect(() => {
       fetchCustomer(id);
     }, [id]);
@@ -129,90 +84,49 @@ Geocode.enableDebug();
           geoCodeWithGoogleMap(customer.address + customer.city);
         }, [customer.address, customer.city]); 
 
-        
-          // useEffect(() => {
-          //   setTimeout(() => {
-          //     geoCodeWithGoogleMap(customer.address+customer.city);
-          //   }, 3000);
-          // }, [customer.address,customer.city]);
-
-       
-        // useEffect(() => {
-        //   (async () => {
-        //      geoCodeWithGoogleMap(props.center);
-             
-        //    })();
-        // }, [props.center]);
-
-        
-
-    //`address=${customer.city}`
-
+    
 
     const AnyReactComponent = ({MarkerMap}) => <img src={Marker}/>;
-
-
-    
-    
-   
-
-    // const  defaultProps  = {
-    //     center: {
-    //       lat: geocode.lat,
-    //       lng: geocode.lng
-    //     },
-    //     zoom: 18
-    //   };
-
-      // console.log("defaultProps",defaultProps);
-
-      // const propsgeocode = {
-      //   center: {
-      //     lat: geocode.lat,
-      //     lng: geocode.lng
-      //   },
-      //   zoom: 18
-      // };
-
-      // console.log("propsgeocode",propsgeocode);
 
     
     return ( <>
         <h1 className="text-center title-customer">{customer.firstName} {customer.lastName} </h1>
-        <div className="row justify-content-center">
-            <p className='text-center mt-5'>{customer.service}  
+        {/* <div className='appli '> */}
+        <FaUserAlt className='iconCustomer mx-auto d-block mt-5' />
+        {/* </div> */}
+        <div className="row d-block ">
+          <p className='text-center mt-5 col-12 mx-auto '>{customer.service}  
             {customer.fidelityPoints.map((points) => (
-                <span key={points.id} className="pl-5">
+              <p key={points.id} className="col-12 mt-3 mx-auto ">
                    {points.pointFidelityCustomer} point
-                </span>
-              ))}
               </p>
-              <p>phone : {customer.phone}</p>
-              <p>email: {customer.email}</p>
-              <p>{customer.address}</p>
-              <p>{customer.zipcode}</p>
-              <p>{customer.city}</p>
-              
-            
+              ))}
+          </p>
         </div>
-        <div style={{ height: '50vh', width: '50%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyC6wewbwA4OTyKuDe0J6l7GgQSFM1NeQ4U'}}
-          // defaultCenter={defaultProps.center}
-          // defaultZoom={defaultProps.zoom}
-          defaultZoom={18}
-          center={geocode}
-        >
-          <AnyReactComponent
-            lat={geocode.lat}
-            lng={geocode.lng}
-            MarkerMap
-            
-          />
-        </GoogleMapReact>
+        <div className='row m-5 text-center'>
+          <p className='col-6 '><FaPhone/>  phone : {customer.phone}</p>
+          <p className='col-6 mx-auto'><FaAt/>  email: {customer.email}</p>
+        </div>
+      <div className='adressCustomer row d-flex mt-5'>
+        <div className='col-xl-6 col-lg-12 '>
+            <p className='col-12 '>{customer.address}</p>
+            <p className='col-12 mt-3'>{customer.zipcode}</p>
+            <p className='col-12 mt-3'>{customer.city}</p> 
+        </div>
+        <div className='col-xl-6 col-lg-12 googleMap' style={{ height: '50vh', width: '50%' }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: 'AIzaSyC6wewbwA4OTyKuDe0J6l7GgQSFM1NeQ4U'}}
+                defaultZoom={18}
+                center={geocode}
+                >
+                <AnyReactComponent
+                  lat={geocode.lat}
+                  lng={geocode.lng}
+                  MarkerMap
+                  />
+              </GoogleMapReact>
+        </div>
       </div>
-        
-      
     </> );
 }
  

@@ -6,6 +6,7 @@ import mobileImg from '../components/mobile.jpg';
 import {FaWindows, FaGooglePlay} from "react-icons/fa";
 
 
+
 const HomePage = (props) => {
     return ( 
 
