@@ -9,10 +9,7 @@ const FidelityPointsPage = (props) => {
   
   const {id } = props.match.params;
   const [fidelityPoints, setFidelityPoints] = useState([]);
-  // const [fidelityPoint, setFidelityPoint] = useState({
-  //   pointFidelityCustomer: "",
-  //   customer: "",
-  // });
+ 
 
   const [customer, setCustomer] = useState([]);
   const [count, setCount] = useState(0);
@@ -61,57 +58,6 @@ const FidelityPointsPage = (props) => {
     }
   };
 
-  //-----------------------------------------------------------------------------------------------//
-
-  // const handleIncrement = (fidelityPoint) => {
-  //   setFidelityPoint({
-  //     ...fidelityPoint,
-  //     pointFidelityCustomer: fidelityPoint.pointFidelityCustomer + 1 ,
-  //     customer: fidelityPoint.customer
-  //   });
-  // };
-
-
-
-  //   const handleSubmit = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       await fidelityPointsAPi.update(id, fidelityPoint);
-  //     } catch (error) {
-  //         console.log(error.response);
-  //     }
-  //   };
-
-
-
-
-  
-  // const handleIncrement = async (id) => {
-  //   // console.log(currentTarget);
-  //   // console.log(id);
-
-  //   try {
-  //     setFidelityPoints(
-  //       fidelityPoints.filter(
-  //         (fidelityPoint) =>
-  //           fidelityPoint.id === id && fidelityPoint.pointFidelityCustomer + 1 
-  //       )
-  //     );
-
-  //     await fidelityPointsAPi.update(id, fidelityPoints );
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // };
-
-  // const handleIncrement = async (id, id_customer, previousPointFidelityCustomer) => {
-  //   try {
-  //     await fidelityPointsAPi.update(id, {customer: id_customer, pointFidelityCustomer: previousPointFidelityCustomer +1 });
-  //     await fetchCustomers();
-  //    } catch (error) {
-  //      console.log(error.response);
-  //    }
-  // };
 
 
 
@@ -145,7 +91,7 @@ const FidelityPointsPage = (props) => {
   );
 
 
-  console.log(fidelityPoints);
+  // console.log(fidelityPoints);
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">

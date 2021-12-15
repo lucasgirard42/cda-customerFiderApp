@@ -10,7 +10,7 @@ const SettingUserPage = (props) => {
    
    const {id} = props.match.params
 
-   console.log(id);
+  //  console.log(id);
 
    const [user, setUser] = useState({
        email:"",
@@ -73,27 +73,29 @@ const SettingUserPage = (props) => {
 
 
 
-   console.log(user);
+  //  console.log(user);
 
    return (
      <>
-     {/* <div className='bg-light p-3'> */}
        <h1 className="text-center">{user.email}</h1>
+     <div className='bg-light p-3 mt-5'>
        <div>
          <p>mail : {user.mail}</p>
          <p>reduction : {user.reduction}</p>
        </div>
        <form onSubmit={handleSubmit}>
          <Field
+           className='mt-3' 
            onChange={handleChange}
            value={user.company}
            name="company"
            label="entrerise"
            placeholder="votre nom d'\entreprise"
          />
-         <label>rédaction de mail</label>
+         <label className='mt-3'>rédaction de mail</label>
          <textarea
-           rows="3"
+         className='mb-3'
+           rows="5"
            style={{'width':'100%'}}
            onChange={handleChange}
            value={user.mail}
@@ -107,9 +109,9 @@ const SettingUserPage = (props) => {
            name="reduction"
            label="code réduction"
            type="number"
-           placeholder="votre reduction"
+           placeholder="votre réduction"
          />
-         <div className="form-group mt-2">
+         <div className="form-group mt-3">
            <button type="submit" className="btn btn-success">
              Enregister
            </button>
@@ -118,7 +120,7 @@ const SettingUserPage = (props) => {
            </Link>
          </div>
        </form>
-     {/* </div> */}
+     </div>
      </>
    );
 }

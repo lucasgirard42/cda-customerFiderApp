@@ -63,7 +63,7 @@ Geocode.enableDebug();
       fetchCustomer(id);
     }, [id]);
 
-    console.log(customer);
+    // console.log(customer);
 
      // Get latitude & longitude from address.
     const geoCodeWithGoogleMap = async () => {
@@ -90,10 +90,10 @@ Geocode.enableDebug();
 
     
     return ( <>
+   
         <h1 className="text-center title-customer">{customer.firstName} {customer.lastName} </h1>
-        {/* <div className='appli '> */}
         <FaUserAlt className='iconCustomer mx-auto d-block mt-5' />
-        {/* </div> */}
+    <div className='bg-light mt-5 p-3'>
         <div className="row d-block ">
           <p className='text-center mt-5 col-12 mx-auto '>{customer.service}  
             {customer.fidelityPoints.map((points) => (
@@ -127,6 +127,7 @@ Geocode.enableDebug();
               </GoogleMapReact>
         </div>
       </div>
+    </div>
     </> );
 }
  

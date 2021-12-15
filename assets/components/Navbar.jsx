@@ -18,7 +18,7 @@ const Navbar = ({ history, match}) => {
   };
   // const { id} = match.params;
 
-console.log("ppl data user ", userData);
+// console.log("ppl data user ", userData);
 
   // console.log('c mon id',match);
 
